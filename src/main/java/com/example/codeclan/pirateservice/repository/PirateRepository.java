@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface PirateRepository extends JpaRepository<Pirate, Long> {
     List<Pirate> findByAgeGreaterThan(int age);
+    List<Pirate> findByRaidsId(long id);
 }

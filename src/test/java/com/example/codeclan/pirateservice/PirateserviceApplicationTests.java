@@ -72,5 +72,24 @@ public class PirateserviceApplicationTests {
 		assertTrue(found.size() == 3);
 	}
 
+	@Test
+	public void canFindPiratesByRaidId() {
+		List<Pirate> found = pirateRepository.findByRaidsId(2);
+		assertTrue(found.size() == 2);
+	}
+
+	@Test
+	public void canFindShipsByPirateFirstName() {
+		List<Ship> found = shipRepository.findByPiratesFirstName("jack");
+		assertTrue(found.size() == 2);
+	}
+
+	@Test
+	public void canFindRaidsByPiratesShip() {
+		Ship foundShip = shipRepository.getById(3L);
+		List<Raid> found = raidRepository.findByPiratesShip(foundShip);
+		assertTrue(found.size() == 2);
+	}
+
 
 }
