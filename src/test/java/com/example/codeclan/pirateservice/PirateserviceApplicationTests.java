@@ -66,5 +66,11 @@ public class PirateserviceApplicationTests {
 		assertTrue(found.size() == 0);
 	}
 
+	@Test
+	public void canFindRaidsByLocation() {
+		List<Raid> found = raidRepository.findByLocation("Tortuga");
+		assertTrue(found.size() == 3);
+	}
+
 
 }
