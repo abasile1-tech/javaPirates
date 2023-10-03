@@ -17,8 +17,12 @@ public class RaidController {
     RaidRepository raidRepository;
 
     @GetMapping(value = "/raids")
-    public ResponseEntity<List<Raid>> getAllRaids(){
-        return new ResponseEntity<>(raidRepository.findAll(), HttpStatus.OK);
+    public ResponseEntity<List<Raid>> getAllRaids(@RequestParam(name="location", required = false) String location){
+        if (location == null) {
+            return new ResponseEntity<>(raidRepository.findAll(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(raidRepository.findByLocation(location), HttpStatus.OK);
+        }
     }
 
     @GetMapping(value = "/raids/{id}")
@@ -31,5 +35,4 @@ public class RaidController {
         raidRepository.save(raid);
         return new ResponseEntity<>(raid, HttpStatus.CREATED);
     }
-
 }

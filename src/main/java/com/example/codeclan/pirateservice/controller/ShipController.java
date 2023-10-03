@@ -39,6 +39,5 @@ public class ShipController {
         } else {
             return new ResponseEntity<>(shipRepository.findByPiratesFirstName(name), HttpStatus.OK);
         }
-
     }
 }
