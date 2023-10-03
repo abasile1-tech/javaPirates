@@ -33,7 +33,12 @@ public class ShipController {
     }
 
     @GetMapping(value = "/ships/pirates")
-    public ResponseEntity<List<Ship>> getAllShipsWithPirateOnBoard(@RequestParam(name="named") String name) {
-        return new ResponseEntity<>(shipRepository.findByPiratesFirstName(name), HttpStatus.OK);
+    public ResponseEntity<List<Ship>> getAllShipsWithPirateOnBoard(@RequestParam(name="named", required = false) String name) {
+        if (name == null) {
+            return new ResponseEntity<>(shipRepository.findAll(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(shipRepository.findByPiratesFirstName(name), HttpStatus.OK);
+        }
+
     }
 }
